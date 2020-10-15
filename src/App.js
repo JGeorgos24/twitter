@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Profile from './components/Profile';
+
 
 // Twitter Clone
 // Components --> App--> Profile, News Feed, Individual tweet
@@ -27,6 +28,7 @@ class App extends Component {
      return (
     <div className="App">
       <h1> Twitter &copy; CRHarding </h1>
+      <Profile />
     </div>
   ); 
   }
