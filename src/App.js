@@ -28,7 +28,7 @@ class App extends Component {
      return (
     <div className="App">
       <h1> Twitter &copy; CRHarding </h1>
-      <Profile />
+      <Profile userData={this.state.user}/>
     </div>
   ); 
   }
