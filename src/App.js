@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
 import Profile from './components/Profile';
+import {Link, Route} from 'react-router-dom';
+
+
 
 
 // Twitter Clone
@@ -27,8 +30,15 @@ class App extends Component {
   render(){
      return (
     <div className="App">
+      <header>
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/profile">Profile</Link>
+          <Link to="tweet/new">Compose a Tweet</Link>
+        </nav>       
+      </header>
       <h1> Twitter &copy; CRHarding </h1>
-      <Profile userData={this.state.user}/>
+      <Route path="/profile" render={()=> <Profile userData={this.state.user}/>}/>
     </div>
   ); 
   }
