@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
-import Profile from './components/Profile';
 import {Link, Route} from 'react-router-dom';
-
-
+import Profile from './components/Profile';
+import CreateTweet from './components/CreateTweet';
 
 
 // Twitter Clone
@@ -27,6 +26,20 @@ class App extends Component {
     }
   }
 
+  submitTweet = (e, tweet) => {
+    e.preventDefault();
+    tweet.userId = this.state.user.id;
+    tweet.id = Math.floor(Math.random() * 1000)
+    tweet.timestamp = Date.now();
+
+    const tweets= this.state.tweets;
+    tweets.push(tweet);
+    this.setState({
+      tweets
+    })
+    // console.log(tweet);
+  }
+
   render(){
      return (
     <div className="App">
@@ -39,6 +52,17 @@ class App extends Component {
       </header>
       <h1> Twitter &copy; CRHarding </h1>
       <Route path="/profile" render={()=> <Profile userData={this.state.user}/>}/>
+      <Route path="/tweet/new" render={()=> <CreateTweet userId={this.state.user.id} submitTweet={this.submitTweet} /> } />
+      {this.state.tweets && 
+        <div>
+          {this.state.tweets.map((tweet, id) => {
+            return <div>
+                <p>{tweet.timestamp}</p>
+                <p>{tweet.content}</p>
+              </div>
+          })}
+        </div>
+          }
     </div>
   ); 
   }
